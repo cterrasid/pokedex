@@ -9,8 +9,8 @@ const List = props => {
     <ul>
       {list.map(item => {
         return (
-          <li>
-            <Card image={item.url} name={item.name} />
+          <li key={item.id}>
+            <Card image={item.sprites.front_default} name={item.name} />
           </li>
         );
       })}
@@ -19,7 +19,7 @@ const List = props => {
 };
 
 List.propTypes = {
-  list: PropTypes.objectOf(PropTypes.object).isRequired,
+  list: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default List;

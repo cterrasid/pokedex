@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-// import { fetchPokemonList, fetchImage } from '../../services/pokedexService';
+import { fetchPokemonList } from '../../services/pokedexService';
 import List from '../List';
 import './styles.scss';
 
@@ -18,24 +18,25 @@ class App extends PureComponent {
   }
 
   getPokemonList() {
-    fetch('https://pokeapi.co/api/v2/pokemon/?limit=25')
-      .then(pokeRes => pokeRes.json())
-      .then(pokeData => {
-        const { results } = pokeData;
-        const newPokeList = results.map((item, index) => {
-          return { ...item, id: index + 1 };
-        });
-        this.setState({
-          list: newPokeList,
-          isLoading: false,
-        });
-        return fetch(
-          'https://pokeapi.co/api/v2/pokemon-form/' + results[0] + '/',
-        );
+    fetchPokemonList()
+      .then(res => {
+        const { results } = res;
+        for (const item of results) {
+          const { url } = item;
+          fetch(url)
+            .then(res => res.json())
+            .then(pokeList => {
+              this.setState(state => {
+                return {
+                  list: [...state.list, pokeList],
+                  isLoading: false,
+                };
+              });
+            })
+        }
       })
-      .then(imageResponse => imageResponse.json())
-      .then(imageData => {
-        return imageData.sprites.front_default;
+      .catch(error => {
+        console.error('SOMETHING IS NOT WORKING:', error);
       });
   }
 
