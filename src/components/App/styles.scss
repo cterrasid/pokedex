@@ -45,8 +45,20 @@
   }
 
   &__circle{
-    @include boxSize(45px, 45px);
-    border-radius: 0 100% 0 0;
-    background-color: $redOricorio;
+    &-left{
+      @include boxSize(45px, 45px);
+      border-radius: 0 100% 0 0;
+      background-color: $redOricorio;
+      left: 0;
+      bottom: 0;
+    }
+
+    &-right{
+      @include boxSize(45px, 45px);
+      border-radius: 100% 0 0 0;
+      background-color: $redOricorio;
+      right: 0;
+      bottom: 0;
+    }
   }
 }

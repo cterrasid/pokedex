@@ -68,8 +68,8 @@ class App extends PureComponent {
           </main>
         )}
         <footer className="footer__container">
-          <div className="footer__circle"></div>
-          <div className="footer__circle"></div>
+          <div className="footer__circle-left"></div>
+          <div className="footer__circle-right"></div>
         </footer>
       </div>
     );
