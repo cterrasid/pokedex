@@ -1,4 +1,4 @@
-# Simple Pokedex
+# Simple Pokedex <img src="./Pokedex.png" width="45" alt="Pokedex">
 
 _Single Page Application created with React. The app, is a simple interface to consult 25 different Pokemon, that allows to filter by it's name, using the [PokeAPI](https://pokeapi.co/)_
 
