@@ -3,9 +3,9 @@
   width: $width;
 }
 
-@mixin flexContainer($display, $flex-direction, $justify-content, $align-items){
+@mixin flexContainer($display, $flex-flow, $justify-content, $align-items){
   display: $display;
-  flex-direction: $flex-direction;
+  flex-flow: $flex-flow;
   justify-content: $justify-content;
   align-items: $align-items;
 }

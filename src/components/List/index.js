@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from '../Card';
+import './styles.scss';
 
 const List = props => {
   const { list, queryName } = props;
 
   return (
-    <ul>
+    <ul className="list__container">
       {list
         .filter(item =>
           item.name.toLowerCase().includes(queryName.toLowerCase()),

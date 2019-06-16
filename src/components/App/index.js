@@ -51,10 +51,10 @@ class App extends PureComponent {
 
     return (
       <div className="app__container">
-        {/* <header className="header__container">
+        <header className="header__container">
           <div className="header__triangle-left"></div>
           <div className="header__triangle-right"></div>
-        </header> */}
+        </header>
         {isLoading ? (
           <p className="loading">Loading...</p>
         ) : (
@@ -67,10 +67,10 @@ class App extends PureComponent {
             />
           </main>
         )}
-        {/* <footer className="footer__container">
-          <div className="footer__circle-left"></div>
-          <div className="footer__circle-right"></div>
-        </footer> */}
+        <footer className="footer__container">
+          <div className="footer__circle"></div>
+          <div className="footer__circle"></div>
+        </footer>
       </div>
     );
   }

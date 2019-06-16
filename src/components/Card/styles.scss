@@ -3,11 +3,12 @@
 
 .card{
   &__container{
-    @include boxSize(unset, 200px);
+    @include boxSize(unset, 175px);
     @include flexContainer(flex, column, center, center);
     background-color: $whiteVulpix;
     margin: 20px;
     box-shadow: 0 2px 25px 2px $grayOnix;
+    border-radius: 5px;
   }
 
   &__image{
@@ -17,6 +18,7 @@
       @include flexContainer(flex, column, unset, center);
       @include boxSize(unset, 100%);
       background-color: $grayMinccino;
+      border-radius: 5px 5px 0 0;
     }
 
   }
