@@ -1,0 +1,19 @@
+@import "../../scss/variables.scss";
+
+.card{
+  &__container{
+    background-color: $whiteVulpix;
+  }
+
+  &__image{
+    background-color: pink;
+  }
+
+  &__name{
+    background-color: blue;
+  }
+
+  &__types{
+    background-color: green;
+  }
+}

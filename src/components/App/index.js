@@ -22,11 +22,11 @@ class App extends PureComponent {
   }
 
   getPokemonList() {
-    fetchPokemonList().then(res => {
-      const { results } = res;
+    fetchPokemonList().then(data => {
+      const { results } = data;
       results.map(item => {
         return fetch(item.url)
-          .then(response => response.json())
+          .then(res => res.json())
           .then(pokeList => {
             this.setState(state => {
               return {
@@ -50,11 +50,15 @@ class App extends PureComponent {
     const { list, isLoading, queryName } = this.state;
 
     return (
-      <div>
+      <div className="app__container">
+        {/* <header className="header__container">
+          <div className="header__triangle-left"></div>
+          <div className="header__triangle-right"></div>
+        </header> */}
         {isLoading ? (
-          <p>Loading...</p>
+          <p className="loading">Loading...</p>
         ) : (
-          <main>
+          <main className="main__container">
             <Filters filterByName={this.filterByName} />
             <List
               list={list}
@@ -63,6 +67,10 @@ class App extends PureComponent {
             />
           </main>
         )}
+        {/* <footer className="footer__container">
+          <div className="footer__circle-left"></div>
+          <div className="footer__circle-right"></div>
+        </footer> */}
       </div>
     );
   }
