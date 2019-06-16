@@ -1,0 +1,23 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
+
+.filter {
+  @include flexContainer(flex, unset, center, center);
+    &-name {
+      &__label {
+        @include boxSize(1px, 1px);
+        position: absolute !important;
+        overflow: hidden;
+        clip: rect(1px 1px 1px 1px);
+        clip: rect(1px, 1px, 1px, 1px);
+      }
+
+      &__input {
+        @include boxSize(30px, 200px);
+        border-radius: 25px;
+        border: 1px solid $grayOnix;
+        text-align: center;
+        text-transform: initial;
+      }
+  }
+}
