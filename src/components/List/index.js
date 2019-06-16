@@ -3,23 +3,33 @@ import PropTypes from 'prop-types';
 import Card from '../Card';
 
 const List = props => {
-  const { list } = props;
+  const { list, queryName } = props;
 
   return (
     <ul>
-      {list.map(item => {
-        return (
-          <li key={item.id}>
-            <Card image={item.sprites.front_default} name={item.name} />
-          </li>
-        );
-      })}
+      {list
+        .filter(item =>
+          item.name.toLowerCase().includes(queryName.toLowerCase()),
+        )
+        .map(item => {
+          return (
+            <li key={item.id}>
+              <Card
+                image={item.sprites.front_default}
+                name={item.name}
+                types={item.types}
+                number={item.id}
+              />
+            </li>
+          );
+        })}
     </ul>
   );
 };
 
 List.propTypes = {
   list: PropTypes.arrayOf(PropTypes.object).isRequired,
+  queryName: PropTypes.string.isRequired,
 };
 
 export default List;

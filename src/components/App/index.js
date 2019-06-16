@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
-import { fetchPokemonList } from '../../services/pokedexService';
+import fetchPokemonList from '../../services/pokedexService';
+import Filters from '../Filters';
 import List from '../List';
 import './styles.scss';
 
@@ -10,7 +11,10 @@ class App extends PureComponent {
     this.state = {
       list: [],
       isLoading: true,
+      queryName: '',
     };
+
+    this.filterByName = this.filterByName.bind(this);
   }
 
   componentDidMount() {
@@ -18,38 +22,47 @@ class App extends PureComponent {
   }
 
   getPokemonList() {
-    fetchPokemonList()
-      .then(res => {
-        const { results } = res;
-        for (const item of results) {
-          const { url } = item;
-          fetch(url)
-            .then(res => res.json())
-            .then(pokeList => {
-              this.setState(state => {
-                return {
-                  list: [...state.list, pokeList],
-                  isLoading: false,
-                };
-              });
-            })
-        }
-      })
-      .catch(error => {
-        console.error('SOMETHING IS NOT WORKING:', error);
+    fetchPokemonList().then(res => {
+      const { results } = res;
+      results.map(item => {
+        return fetch(item.url)
+          .then(response => response.json())
+          .then(pokeList => {
+            this.setState(state => {
+              return {
+                list: [...state.list, pokeList],
+                isLoading: false,
+              };
+            });
+          });
       });
+    });
+  }
+
+  filterByName(event) {
+    const inputValue = event.currentTarget.value;
+    this.setState({
+      queryName: inputValue,
+    });
   }
 
   render() {
-    const { list, isLoading } = this.state;
-
-    if (isLoading) {
-      return <p>Loading...</p>;
-    }
+    const { list, isLoading, queryName } = this.state;
 
     return (
       <div>
-        <List list={list} />
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <main>
+            <Filters filterByName={this.filterByName} />
+            <List
+              list={list}
+              filterByName={this.filterByName}
+              queryName={queryName}
+            />
+          </main>
+        )}
       </div>
     );
   }
