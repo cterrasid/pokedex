@@ -7,14 +7,18 @@ const Card = props => {
 
   return (
     <div className="card__container">
-      <img className="card__image" src={image} alt={name} />
-      <p>ID/{number}</p>
-      <p className="card__name">{name}</p>
-      <ul className="card__types">
-        {types.map(type => (
-          <li>{type.type.name}</li>
-        ))}
-      </ul>
+      <div className="card__image-wrapper">
+        <img className="card__image" src={image} alt={name} />
+        <p className="card__number">ID/{number}</p>
+      </div>
+      <div className="card__info-wrapper">
+        <p className="card__name">{name}</p>
+        <ul className="card__types">
+          {types.map(type => (
+            <li className="card__types-type">{type.type.name}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
