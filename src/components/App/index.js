@@ -30,7 +30,7 @@ class App extends PureComponent {
           .then(pokeList => {
             this.setState(state => {
               return {
-                list: [...state.list, pokeList],
+                list: [...state.list.sort((a, b) => a.id - b.id), pokeList],
                 isLoading: false,
               };
             });

@@ -12,7 +12,6 @@ const List = props => {
         .filter(item =>
           item.name.toLowerCase().includes(queryName.toLowerCase()),
         )
-        .sort((a, b) => a.id - b.id)
         .map(item => {
           return (
             <li key={item.id}>
