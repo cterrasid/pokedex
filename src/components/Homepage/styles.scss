@@ -1,0 +1,55 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
+
+.header{
+  &__container{
+    @include flexContainer(flex, unset, space-between, unset);
+    position: fixed;
+    width: 100%;
+  }
+
+  &__triangle{
+    &-left{
+      border-right: 30px solid transparent;
+      border-top: 30px solid $blackNecrozma;
+      border-left: 30px solid $blackNecrozma;
+      border-bottom: 30px solid transparent;
+    }
+
+    &-right{
+      border-right: 30px solid $blackNecrozma;
+      border-top: 30px solid $blackNecrozma;
+      border-left: 30px solid transparent;
+      border-bottom: 30px solid transparent;
+    }
+  }
+}
+
+.footer{
+  &__container{
+    @include flexContainer(flex, unset, space-between, unset);
+    flex: auto;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+  }
+
+  &__circle{
+    &-left{
+      @include boxSize(45px, 45px);
+      border-radius: 0 100% 0 0;
+      background-color: $redOricorio;
+      left: 0;
+      bottom: 0;
+    }
+
+    &-right{
+      @include boxSize(45px, 45px);
+      border-radius: 100% 0 0 0;
+      background-color: $redOricorio;
+      right: 0;
+      bottom: 0;
+    }
+  }
+}

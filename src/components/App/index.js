@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
-import fetchPokemonList from '../../services/pokedexService';
-import Filters from '../Filters';
-import List from '../List';
+import { fetchPokemonList, fetchAnyUrl } from '../../services/pokedexService';
+import Homepage from '../Homepage';
 import './styles.scss';
 
 class App extends PureComponent {
@@ -25,16 +24,14 @@ class App extends PureComponent {
     fetchPokemonList().then(data => {
       const { results } = data;
       results.map(item => {
-        return fetch(item.url)
-          .then(res => res.json())
-          .then(pokeList => {
-            this.setState(state => {
-              return {
-                list: [...state.list.sort((a, b) => a.id - b.id), pokeList],
-                isLoading: false,
-              };
-            });
+        return fetchAnyUrl(item.url).then(pokeList => {
+          this.setState(state => {
+            return {
+              list: [...state.list.sort((a, b) => a.id - b.id), pokeList],
+              isLoading: false,
+            };
           });
+        });
       });
     });
   }
@@ -51,26 +48,15 @@ class App extends PureComponent {
 
     return (
       <div className="app__container">
-        <header className="header__container">
-          <div className="header__triangle-left"></div>
-          <div className="header__triangle-right"></div>
-        </header>
         {isLoading ? (
           <p className="loading">Loading...</p>
         ) : (
-          <main className="main__container">
-            <Filters filterByName={this.filterByName} />
-            <List
-              list={list}
-              filterByName={this.filterByName}
-              queryName={queryName}
-            />
-          </main>
+          <Homepage
+            list={list}
+            queryName={queryName}
+            filterByName={this.filterByName}
+          />
         )}
-        <footer className="footer__container">
-          <div className="footer__circle-left"></div>
-          <div className="footer__circle-right"></div>
-        </footer>
       </div>
     );
   }
