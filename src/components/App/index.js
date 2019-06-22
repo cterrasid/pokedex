@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import { fetchPokemonList, fetchAnyUrl } from '../../services/pokedexService';
 import Homepage from '../Homepage';
-import './styles.scss';
+import Detail from '../Detail';
 
 class App extends PureComponent {
   constructor(props) {
@@ -48,15 +49,28 @@ class App extends PureComponent {
 
     return (
       <div className="app__container">
-        {isLoading ? (
-          <p className="loading">Loading...</p>
-        ) : (
-          <Homepage
-            list={list}
-            queryName={queryName}
-            filterByName={this.filterByName}
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <Homepage
+                list={list}
+                isLoading={isLoading}
+                queryName={queryName}
+                filterByName={this.filterByName}
+              />
+            )}
           />
-        )}
+          <Route
+            path="/pokemon/:id"
+            render={routerProps => (
+              <Detail
+                detail={this.getCardDetail(routerProps.match.params.id)}
+              />
+            )}
+          />
+        </Switch>
       </div>
     );
   }

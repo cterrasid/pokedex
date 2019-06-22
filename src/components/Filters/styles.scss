@@ -3,6 +3,7 @@
 
 .filter {
   @include flexContainer(flex, unset, center, center);
+  padding-top: 40px;
     &-name {
       &__label {
         @include boxSize(1px, 1px);
@@ -15,7 +16,8 @@
       &__input {
         @include boxSize(30px, 200px);
         border-radius: 25px;
-        border: 1px solid $grayOnix;
+        border: 1px solid $whiteVulpix;
+        box-shadow: 0 2px 25px 2px $yellowRaichu;
         text-align: center;
         text-transform: initial;
       }
