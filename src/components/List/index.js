@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Card from '../Card';
 import './styles.scss';
 
@@ -15,12 +16,14 @@ const List = props => {
         .map(item => {
           return (
             <li key={item.id}>
-              <Card
-                image={item.sprites.front_default}
-                name={item.name}
-                types={item.types}
-                number={item.id}
-              />
+              <Link to={`/card-detail/${item.id}`}>
+                <Card
+                  image={item.sprites.front_default}
+                  name={item.name}
+                  types={item.types}
+                  number={item.id}
+                />
+              </Link>
             </li>
           );
         })}

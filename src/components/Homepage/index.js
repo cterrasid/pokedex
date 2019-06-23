@@ -8,13 +8,13 @@ const Homepage = props => {
   const { list, isLoading, queryName, filterByName } = props;
 
   return (
-    <div classNameN="page__container">
+    <div className="page__container">
       <header className="header__container">
         <div className="header__triangle-left"></div>
         <div className="header__triangle-right"></div>
       </header>
       {isLoading ? (
-        <p className="loading">Loading...</p>
+        <progress className="loading">Loading...</progress>
       ) : (
         <main className="main__container">
           <Filters filterByName={filterByName} />

@@ -6,7 +6,7 @@
     @include boxSize(unset, 175px);
     @include flexContainer(flex, column, center, center);
     background-color: $whiteVulpix;
-    margin: 20px auto;
+    margin: 20px;
     box-shadow: 0 2px 25px 2px $yellowRaichu;
     border-radius: 5px;
   }
