@@ -9,7 +9,7 @@ const Detail = props => {
       {list ? (
         <div className="detail__container">{match.params.id}</div>
       ) : (
-        <p>ERROR</p>
+        <p>There are not elements for this query</p>
       )}
 
       <Link to="/">Back</Link>

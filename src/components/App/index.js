@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { fetchPokemonList, fetchAnyUrl } from '../../services/pokedexService';
+import { fetchPokemonList, getUrl } from '../../services/pokedexService';
 import Homepage from '../Homepage';
 import Detail from '../Detail';
 
@@ -15,7 +15,6 @@ class App extends PureComponent {
     };
 
     this.filterByName = this.filterByName.bind(this);
-    this.getCardDetail = this.getCardDetail.bind(this);
   }
 
   componentDidMount() {
@@ -26,7 +25,7 @@ class App extends PureComponent {
     fetchPokemonList().then(data => {
       const { results } = data;
       results.map(item => {
-        return fetchAnyUrl(item.url).then(pokeList => {
+        return getUrl(item.url).then(pokeList => {
           this.setState(state => {
             return {
               list: [...state.list.sort((a, b) => a.id - b.id), pokeList],
@@ -36,11 +35,6 @@ class App extends PureComponent {
         });
       });
     });
-  }
-
-  getCardDetail(id) {
-    const { list } = this.state;
-    return list.find(item => item.id === parseInt(id, 10));
   }
 
   filterByName(event) {
