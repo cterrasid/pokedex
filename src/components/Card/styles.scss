@@ -3,8 +3,8 @@
 
 .card{
   &__container{
-    @include boxSize(unset, 175px);
-    @include flexContainer(flex, column, center, center);
+    @include boxSize(240px, 175px);
+    @include flexContainer(flex, column, flex-start, center);
     background-color: $whiteVulpix;
     margin: 20px;
     box-shadow: 0 2px 25px 2px $yellowRaichu;
@@ -53,6 +53,17 @@
       margin-right: 5px;
       padding: 2px;
       text-transform: uppercase;
+    }
+  }
+
+  &__evolution{
+      font-size: 10px;
+      margin: 10px;
+      padding-left: 10px;
+      border-left: 1px solid black;
+    &-evolves{
+      font-size: 16px;
+      font-weight: bold;
     }
   }
 }

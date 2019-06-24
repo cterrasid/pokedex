@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 
 const Card = props => {
-  const { image, name, types, number } = props;
+  const { image, name, types, number, evolves } = props;
 
   return (
     <div className="card__container">
@@ -20,6 +20,13 @@ const Card = props => {
             </li>
           ))}
         </ul>
+        {evolves ? (
+          <p className="card__evolution">
+            Evolves from:<p className="card__evolution-evolves">{evolves}</p>
+          </p>
+        ) : (
+          ''
+        )}
       </div>
     </div>
   );
@@ -30,6 +37,7 @@ Card.propTypes = {
   name: PropTypes.string.isRequired,
   types: PropTypes.arrayOf(PropTypes.object).isRequired,
   number: PropTypes.number.isRequired,
+  evolves: PropTypes.string.isRequired,
 };
 
 export default Card;

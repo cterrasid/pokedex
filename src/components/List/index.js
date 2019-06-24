@@ -22,6 +22,7 @@ const List = props => {
                   name={item.name}
                   types={item.types}
                   number={item.id}
+                  evolves={item.evolution}
                 />
               </Link>
             </li>
