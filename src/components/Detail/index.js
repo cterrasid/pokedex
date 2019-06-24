@@ -5,14 +5,13 @@ import './styles.scss';
 
 const Detail = props => {
   const { detail } = props;
-  console.log(detail);
 
   return (
     <Fragment>
       {detail ? (
         <div className="detail__container">
+          <h2>{detail.name}</h2>
           <div className="detail__main-wrapper">
-            <h2>{detail.name}</h2>
             <h3>#{detail.id}</h3>
             <img
               className="detail__image front"
@@ -40,15 +39,10 @@ const Detail = props => {
             <li>
               <strong>Weight:</strong> {detail.weight / 10} Kg
             </li>
-            <ul>
+            <ul className="detail__profile-abilities">
               <strong>Abilities:</strong>
               {detail.abilities.map((ability, index) => (
-                <li
-                  key={`${detail.id + index}`}
-                  className="detail__profile-abilities"
-                >
-                  {ability.ability.name}
-                </li>
+                <li key={`${detail.id + index}`}>{ability.ability.name}</li>
               ))}
             </ul>
           </ul>
