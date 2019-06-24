@@ -9,10 +9,6 @@ const Homepage = props => {
 
   return (
     <div className="page__container">
-      <header className="header__container">
-        <div className="header__triangle-left"></div>
-        <div className="header__triangle-right"></div>
-      </header>
       {isLoading ? (
         <progress className="loading">Loading...</progress>
       ) : (
@@ -21,10 +17,6 @@ const Homepage = props => {
           <List list={list} filterByName={filterByName} queryName={queryName} />
         </main>
       )}
-      <footer className="footer__container">
-        <div className="footer__circle-left"></div>
-        <div className="footer__circle-right"></div>
-      </footer>
     </div>
   );
 };

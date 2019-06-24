@@ -1,10 +1,11 @@
-@import "../../scss/variables.scss";
-@import "../../scss/mixins.scss";
+@import '../../scss/variables.scss';
+@import '../../scss/mixins.scss';
 
-.detail{
-  &__background{
-    @include boxSize(100vh, 100%);
-    background-color: $almostInvisible;
-
+.detail {
+  &__container {
+    @include boxSize(350px, 450px);
+    @include cardStyle;
+    background-color: $whiteVulpix;
+    border-radius: 5px;
   }
 }

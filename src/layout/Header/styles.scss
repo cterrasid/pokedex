@@ -1,0 +1,24 @@
+@import "../../scss/mixins.scss";
+@import "../../scss/variables.scss";
+
+.header{
+  &__container{
+    @include flexContainer(flex, unset, space-between, unset);
+    position: fixed;
+    width: 100%;
+  }
+
+  &__triangle{
+    &-left{
+      border-color: $blackNecrozma transparent transparent $blackNecrozma;
+      border-width: 30px;
+      border-style: solid;
+    }
+
+    &-right{
+      border-color: $blackNecrozma $blackNecrozma transparent transparent;
+      border-width: 30px;
+      border-style: solid;
+    }
+  }
+}

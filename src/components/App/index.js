@@ -3,6 +3,9 @@ import { Route, Switch } from 'react-router-dom';
 import { fetchPokemonList, getUrl } from '../../services/pokedexService';
 import Homepage from '../Homepage';
 import Detail from '../Detail';
+import Header from '../../layout/Header';
+import Footer from '../../layout/Footer';
+import './styles.scss';
 
 class App extends PureComponent {
   constructor(props) {
@@ -63,29 +66,33 @@ class App extends PureComponent {
     const { list, isLoading, queryName } = this.state;
 
     return (
-      <div className="app__container">
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <Homepage
-                list={list}
-                isLoading={isLoading}
-                queryName={queryName}
-                filterByName={this.filterByName}
-              />
-            )}
-          />
-          <Route
-            path="/card-detail/:id"
-            render={routerProps => (
-              <Detail
-                detail={this.getCardDetails(routerProps.match.params.id)}
-              />
-            )}
-          />
-        </Switch>
+      <div className="app">
+        <Header />
+        <div className="app__container">
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <Homepage
+                  list={list}
+                  isLoading={isLoading}
+                  queryName={queryName}
+                  filterByName={this.filterByName}
+                />
+              )}
+            />
+            <Route
+              path="/card-detail/:id"
+              render={routerProps => (
+                <Detail
+                  detail={this.getCardDetails(routerProps.match.params.id)}
+                />
+              )}
+            />
+          </Switch>
+        </div>
+        <Footer />
       </div>
     );
   }

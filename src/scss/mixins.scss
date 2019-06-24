@@ -1,11 +1,17 @@
-@mixin boxSize($height, $width){
+@mixin boxSize($height, $width) {
   height: $height;
   width: $width;
 }
 
-@mixin flexContainer($display, $flex-flow, $justify-content, $align-items){
+@mixin flexContainer($display, $flex-flow, $justify-content, $align-items) {
   display: $display;
   flex-flow: $flex-flow;
   justify-content: $justify-content;
   align-items: $align-items;
+}
+
+@mixin cardStyle {
+  @include flexContainer(flex, column, flex-start, center);
+  box-shadow: 0 2px 25px 2px $yellowRaichu;
+  border-radius: 5px;
 }

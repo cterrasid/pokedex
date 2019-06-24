@@ -4,11 +4,9 @@
 .card{
   &__container{
     @include boxSize(240px, 175px);
-    @include flexContainer(flex, column, flex-start, center);
+    @include cardStyle;
     background-color: $whiteVulpix;
     margin: 20px;
-    box-shadow: 0 2px 25px 2px $yellowRaichu;
-    border-radius: 5px;
   }
 
   &__image{
@@ -58,6 +56,7 @@
 
   &__evolution{
       font-size: 10px;
+      text-transform: none;
       margin: 10px;
       padding-left: 10px;
       border-left: 1px solid black;
