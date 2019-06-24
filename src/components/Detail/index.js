@@ -5,7 +5,6 @@ import './styles.scss';
 
 const Detail = props => {
   const { detail } = props;
-  console.log(detail);
 
   return (
     <Fragment>
