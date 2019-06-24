@@ -3,9 +3,40 @@
 
 .detail {
   &__container {
+    @include flexContainer(flex, column nowrap, center, center);
+  }
+
+  &__card {
     @include boxSize(350px, 450px);
     @include cardStyle;
     background-color: $whiteVulpix;
     border-radius: 5px;
+
+    &-title {
+      @include boxSize(unset, 100%);
+      background-color: $grayOnix;
+      color: $whiteVulpix;
+      border-radius: 5px 5px 0 0;
+      text-align: center;
+    }
+  }
+
+  &__main-info {
+    @include flexContainer(flex, row nowrap, center, center);
+    @include boxSize(50%, 100%);
+    &__id{
+      align-self: flex-start;
+      text-align: start;
+    }
+  }
+
+  &__profile{
+    @include flexContainer(flex, row nowrap, flex-start, center);
+    &-title{
+      @include boxSize(unset, 100%);
+      background-color: $grayOnix;
+      color: $whiteVulpix;
+      text-align: center;
+    }
   }
 }

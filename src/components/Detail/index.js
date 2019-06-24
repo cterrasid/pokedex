@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './styles.scss';
@@ -7,12 +7,12 @@ const Detail = props => {
   const { detail } = props;
 
   return (
-    <Fragment>
+    <div className="detail__container">
       {detail ? (
-        <div className="detail__container">
-          <h2>{detail.name}</h2>
-          <div className="detail__main-wrapper">
-            <h3>#{detail.id}</h3>
+        <div className="detail__card">
+          <h2 className="detail__card-title">{detail.name}</h2>
+          <div className="detail__main-info">
+            <h3 className="detail__main-info__id">#{detail.id}</h3>
             <img
               className="detail__image front"
               src={detail.sprites.front_default}
@@ -31,27 +31,29 @@ const Detail = props => {
               ))}
             </ul>
           </div>
-          <ul className="detail__profile">
-            <h3 className="detail__profile-title">Profile</h3>
-            <li>
-              <strong>Height:</strong> {detail.height / 10} m
-            </li>
-            <li>
-              <strong>Weight:</strong> {detail.weight / 10} Kg
-            </li>
+          <h3 className="detail__profile-title">Profile</h3>
+          <div className="detail__profile">
+            <ul className="detail__profile-info">
+              <li>
+                <strong>Height:</strong> {detail.height / 10} m
+              </li>
+              <li>
+                <strong>Weight:</strong> {detail.weight / 10} Kg
+              </li>
+            </ul>
             <ul className="detail__profile-abilities">
               <strong>Abilities:</strong>
               {detail.abilities.map((ability, index) => (
                 <li key={`${detail.id + index}`}>{ability.ability.name}</li>
               ))}
             </ul>
-          </ul>
+          </div>
         </div>
       ) : (
         <p>Error</p>
       )}
       <Link to="/">Go back</Link>
-    </Fragment>
+    </div>
   );
 };
 
