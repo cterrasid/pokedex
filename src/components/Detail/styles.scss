@@ -1,0 +1,10 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
+
+.detail{
+  &__background{
+    @include boxSize(100vh, 100%);
+    background-color: $almostInvisible;
+
+  }
+}

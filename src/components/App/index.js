@@ -15,6 +15,7 @@ class App extends PureComponent {
     };
 
     this.filterByName = this.filterByName.bind(this);
+    this.getCardDetails = this.getCardDetails.bind(this);
   }
 
   componentDidMount() {
@@ -22,19 +23,33 @@ class App extends PureComponent {
   }
 
   getPokemonList() {
-    fetchPokemonList().then(data => {
-      const { results } = data;
+    fetchPokemonList().then(pokemon => {
+      const { results } = pokemon;
       results.map(item => {
-        return getUrl(item.url).then(pokeList => {
-          this.setState(state => {
-            return {
-              list: [...state.list.sort((a, b) => a.id - b.id), pokeList],
-              isLoading: false,
+        let mainData = {};
+        return getUrl(item.url).then(pokemonData => {
+          mainData = pokemonData;
+          return getUrl(pokemonData.species.url).then(speciesData => {
+            const evolves = speciesData.evolves_from_species;
+            mainData = {
+              ...mainData,
+              evolution: evolves ? evolves.name : '',
             };
+            this.setState(state => {
+              return {
+                list: [...state.list.sort((a, b) => a.id - b.id), mainData],
+                isLoading: false,
+              };
+            });
           });
         });
       });
     });
+  }
+
+  getCardDetails(id) {
+    const { list } = this.state;
+    return list.find(item => item.id === parseInt(id, 10));
   }
 
   filterByName(event) {
@@ -65,7 +80,9 @@ class App extends PureComponent {
           <Route
             path="/card-detail/:id"
             render={routerProps => (
-              <Detail match={routerProps.match} list={list} />
+              <Detail
+                detail={this.getCardDetails(routerProps.match.params.id)}
+              />
             )}
           />
         </Switch>

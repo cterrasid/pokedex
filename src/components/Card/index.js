@@ -14,8 +14,10 @@ const Card = props => {
       <div className="card__info-wrapper">
         <p className="card__name">{name}</p>
         <ul className="card__types">
-          {types.map(type => (
-            <li className="card__types-type">{type.type.name}</li>
+          {types.map((type, index) => (
+            <li key={`${number + index}`} className="card__types-type">
+              {type.type.name}
+            </li>
           ))}
         </ul>
       </div>

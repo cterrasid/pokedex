@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-for */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
@@ -9,17 +7,20 @@ const Filters = props => {
 
   return (
     <form className="filter">
-      <label className="filter-name__label" htmlFor="filter-name">
-        Find by name
+      <label
+        className="filter-name__label"
+        htmlFor="filter-name"
+        title="Find by name"
+      >
+        <input
+          className="filter-name__input"
+          id="filter-name"
+          type="text"
+          placeholder="Put the name of a pokemon"
+          onChange={filterByName}
+          queryName={queryName}
+        />
       </label>
-      <input
-        className="filter-name__input"
-        id="filter-name"
-        type="text"
-        placeholder="Put the name of a pokemon"
-        onChange={filterByName}
-        queryName={queryName}
-      />
     </form>
   );
 };

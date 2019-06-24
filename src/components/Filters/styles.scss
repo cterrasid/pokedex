@@ -3,16 +3,7 @@
 
 .filter {
   @include flexContainer(flex, unset, center, center);
-  padding-top: 40px;
     &-name {
-      &__label {
-        @include boxSize(1px, 1px);
-        position: absolute !important;
-        overflow: hidden;
-        clip: rect(1px 1px 1px 1px);
-        clip: rect(1px, 1px, 1px, 1px);
-      }
-
       &__input {
         @include boxSize(30px, 200px);
         border-radius: 25px;

@@ -19,17 +19,15 @@
 
   &__triangle{
     &-left{
-      border-right: 30px solid transparent;
-      border-top: 30px solid $blackNecrozma;
-      border-left: 30px solid $blackNecrozma;
-      border-bottom: 30px solid transparent;
+      border-color: $blackNecrozma transparent transparent $blackNecrozma;
+      border-width: 30px;
+      border-style: solid;
     }
 
     &-right{
-      border-right: 30px solid $blackNecrozma;
-      border-top: 30px solid $blackNecrozma;
-      border-left: 30px solid transparent;
-      border-bottom: 30px solid transparent;
+      border-color: $blackNecrozma $blackNecrozma transparent transparent;
+      border-width: 30px;
+      border-style: solid;
     }
   }
 }
