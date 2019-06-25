@@ -25,7 +25,7 @@ const Card = props => {
             Evolves from:<p className="card__evolution-evolves">{evolves}</p>
           </p>
         ) : (
-          ''
+          <p className="card__evolution">Pre-evolution</p>
         )}
       </div>
     </div>

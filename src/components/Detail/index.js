@@ -11,46 +11,53 @@ const Detail = props => {
       {detail ? (
         <div className="detail__card">
           <h2 className="detail__card-title">{detail.name}</h2>
-          <div className="detail__main-info">
-            <h3 className="detail__main-info__id">#{detail.id}</h3>
+          <p className="detail__id">#{detail.id}</p>
+          <div className="detail__image-wrapper">
             <img
-              className="detail__image front"
+              className="detail__image"
               src={detail.sprites.front_default}
               alt={detail.name}
             />
             <img
-              className="detail__image back"
+              className="detail__image"
               src={detail.sprites.back_default}
               alt={detail.name}
             />
-            <ul className="detail__types">
-              {detail.types.map((type, index) => (
-                <li key={`${detail.id + index}`} className="detail__types-type">
-                  {type.type.name}
-                </li>
-              ))}
-            </ul>
           </div>
+          <ul className="detail__types">
+            {detail.types.map((type, index) => (
+              <li key={`${detail.id + index}`} className="detail__types-type">
+                {type.type.name}
+              </li>
+            ))}
+          </ul>
           <h3 className="detail__profile-title">Profile</h3>
           <div className="detail__profile">
             <ul className="detail__profile-info">
-              <li>
+              <li className="detail__profile-info--element">
                 <strong>Height:</strong> {detail.height / 10} m
               </li>
-              <li>
-                <strong>Weight:</strong> {detail.weight / 10} Kg
+              <li className="detail__profile-info--element">
+                <strong>Weight:</strong> {detail.weight / 10} kg
               </li>
             </ul>
-            <ul className="detail__profile-abilities">
-              <strong>Abilities:</strong>
-              {detail.abilities.map((ability, index) => (
-                <li key={`${detail.id + index}`}>{ability.ability.name}</li>
-              ))}
-            </ul>
+            <div className="detail__profile-abilities">
+              Abilities:
+              <ul className="detail__profile-abilities-list">
+                {detail.abilities.map((ability, index) => (
+                  <li
+                    key={`${detail.id + index}`}
+                    className="detail__profile-abilities-ability"
+                  >
+                    {ability.ability.name}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       ) : (
-        <p>Error</p>
+        <progress className="loading">Loading...</progress>
       )}
       <Link to="/">Go back</Link>
     </div>

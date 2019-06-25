@@ -7,10 +7,15 @@
   }
 
   &__card {
-    @include boxSize(350px, 450px);
     @include cardStyle;
+    height: 350px;
+    max-width: 450px;
     background-color: $whiteVulpix;
     border-radius: 5px;
+
+    @media all and (min-width: $tablet) {
+      min-width: 450px;
+    }
 
     &-title {
       @include boxSize(unset, 100%);
@@ -21,22 +26,62 @@
     }
   }
 
-  &__main-info {
-    @include flexContainer(flex, row nowrap, center, center);
-    @include boxSize(50%, 100%);
-    &__id{
-      align-self: flex-start;
-      text-align: start;
+  &__id {
+    align-self: flex-start;
+    margin: 10px;
+    font-weight: bold;
+    font-size: 24px;
+  }
+
+  &__image{
+    &-wrapper{
+      @include flexContainer(flex, row nowrap, center, center);
+      @include boxSize(unset, 100%);
+      padding: 10px;
     }
   }
 
-  &__profile{
+  &__profile {
     @include flexContainer(flex, row nowrap, flex-start, center);
-    &-title{
+    &-title {
       @include boxSize(unset, 100%);
       background-color: $grayOnix;
       color: $whiteVulpix;
       text-align: center;
+    }
+
+    &-info {
+      list-style: circle;
+
+      &--element {
+        text-transform: none;
+      }
+    }
+
+    &-abilities {
+      font-weight: bold;
+      &-list {
+        @include flexContainer(flex, row, center, center);
+        width: 100%;
+        padding: 10px;
+        font-weight: normal;
+      }
+      &-ability {
+        @include type;
+        font-size: 12px;
+      }
+    }
+  }
+
+  &__types {
+    @include flexContainer(flex, row, center, center);
+    width: 100%;
+    font-size: 12px;
+    padding: 10px;
+
+    &-type {
+      @include type;
+      text-transform: uppercase;
     }
   }
 }

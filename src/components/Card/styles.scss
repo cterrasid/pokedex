@@ -1,27 +1,26 @@
-@import "../../scss/variables.scss";
-@import "../../scss/mixins.scss";
+@import '../../scss/variables.scss';
+@import '../../scss/mixins.scss';
 
-.card{
-  &__container{
+.card {
+  &__container {
     @include boxSize(240px, 175px);
     @include cardStyle;
     background-color: $whiteVulpix;
     margin: 20px;
   }
 
-  &__image{
+  &__image {
     @include boxSize(100px, 100px);
 
-    &-wrapper{
+    &-wrapper {
       @include flexContainer(flex, column, unset, center);
       @include boxSize(unset, 100%);
       background-color: $grayMinccino;
       border-radius: 5px 5px 0 0;
     }
-
   }
 
-  &__number{
+  &__number {
     @include boxSize(20px, 50px);
     background-color: $grayOnix;
     text-align: center;
@@ -31,38 +30,35 @@
     padding: 4px 0;
   }
 
-  &__info-wrapper{
+  &__info-wrapper {
     @include boxSize(unset, 100%);
     padding: 10px;
   }
 
-  &__name{
+  &__name {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 5px;
   }
 
-  &__types{
+  &__types {
     @include flexContainer(flex, row, unset, unset);
     width: 100%;
     font-size: 12px;
 
-    &-type{
-      border: 1px solid $blackNecrozma;
-      border-radius: 5px;
-      margin-right: 5px;
-      padding: 2px;
+    &-type {
+      @include type;
       text-transform: uppercase;
     }
   }
 
-  &__evolution{
-      font-size: 10px;
-      text-transform: none;
-      margin: 10px;
-      padding-left: 10px;
-      border-left: 1px solid black;
-    &-evolves{
+  &__evolution {
+    font-size: 10px;
+    text-transform: none;
+    margin: 10px;
+    padding-left: 10px;
+    border-left: 1px solid black;
+    &-evolves {
       font-size: 16px;
       font-weight: bold;
     }
