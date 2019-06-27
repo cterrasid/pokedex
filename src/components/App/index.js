@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { fetchPokemonList, getUrl } from '../../services/pokedexService';
+import { getMainData, getUrl } from '../../services/pokedexService';
 import Homepage from '../Homepage';
 import Detail from '../Detail';
 import Header from '../../layout/Header';
@@ -25,30 +25,42 @@ class App extends PureComponent {
     this.getPokemonList();
   }
 
-  getPokemonList() {
-    fetchPokemonList().then(pokemon => {
-      const { results } = pokemon;
-      results.map(item => {
-        let mainData = {};
-        return getUrl(item.url).then(pokemonData => {
-          mainData = pokemonData;
-          return getUrl(pokemonData.species.url).then(speciesData => {
-            const evolves = speciesData.evolves_from_species;
-            mainData = {
-              ...mainData,
-              evolution: evolves ? evolves.name : '',
-            };
-            this.setState(state => {
-              return {
-                list: [...state.list.sort((a, b) => a.id - b.id), mainData],
-                isLoading: false,
-              };
-            });
-          });
-        });
-      });
-    });
+  async getPokemonList() {
+    const firstCall = getMainData();
+    const data = await firstCall;
+    const list = data.results.map(info => getUrl(info.url));
+    const mainData = await Promise.all(list);
+    mainData.map(mainProperties =>
+      this.setState({
+        list: mainProperties,
+      }),
+    );
   }
+
+  // getPokemonList() {
+  //   getMainData().then(pokemon => {
+  //     const { results } = pokemon;
+  //     results.map(item => {
+  //       let mainData = {};
+  //       return getUrl(item.url).then(pokemonData => {
+  //         mainData = pokemonData;
+  //         return getUrl(pokemonData.species.url).then(speciesData => {
+  //           const evolves = speciesData.evolves_from_species;
+  //           mainData = {
+  //             ...mainData,
+  //             evolution: evolves ? evolves.name : '',
+  //           };
+  //           this.setState(state => {
+  //             return {
+  //               list: [...state.list.sort((a, b) => a.id - b.id), mainData],
+  //               isLoading: false,
+  //             };
+  //           });
+  //         });
+  //       });
+  //     });
+  //   });
+  // }
 
   getCardDetails(id) {
     const { list } = this.state;
@@ -75,7 +87,10 @@ class App extends PureComponent {
               path="/"
               render={() => (
                 <Homepage
-                  list={list}
+                  id={list.id}
+                  name={list.name}
+                  frontImage={list.sprites}
+                  types={list.types}
                   isLoading={isLoading}
                   queryName={queryName}
                   filterByName={this.filterByName}
@@ -87,6 +102,14 @@ class App extends PureComponent {
               render={routerProps => (
                 <Detail
                   detail={this.getCardDetails(routerProps.match.params.id)}
+                  // frontImage={list.sprites.front_default}
+                  // backImage={list.sprites.back_default}
+                  name={list.name}
+                  types={list.types}
+                  species={list.species}
+                  stats={list.stats}
+                  height={list.height}
+                  weight={list.weight}
                 />
               )}
             />

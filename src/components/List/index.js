@@ -5,24 +5,21 @@ import Card from '../Card';
 import './styles.scss';
 
 const List = props => {
-  const { list, queryName } = props;
+  const { id, name, frontImage, types, queryName } = props;
 
   return (
     <ul className="list__container">
-      {list
-        .filter(item =>
-          item.name.toLowerCase().includes(queryName.toLowerCase()),
-        )
-        .map(item => {
+      {name
+        .filter(item => item.toLowerCase().includes(queryName.toLowerCase()))
+        .map(() => {
           return (
-            <li key={item.id}>
-              <Link to={`/card-detail/${item.id}`}>
+            <li key={id}>
+              <Link to={`/card-detail/${id}`}>
                 <Card
-                  image={item.sprites.front_default}
-                  name={item.name}
-                  types={item.types}
-                  number={item.id}
-                  evolves={item.evolution}
+                  frontImage={frontImage}
+                  name={name}
+                  types={types}
+                  number={id}
                 />
               </Link>
             </li>
@@ -33,7 +30,10 @@ const List = props => {
 };
 
 List.propTypes = {
-  list: PropTypes.arrayOf(PropTypes.object).isRequired,
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  frontImage: PropTypes.string.isRequired,
+  types: PropTypes.arrayOf(PropTypes.string).isRequired,
   queryName: PropTypes.string.isRequired,
 };
 

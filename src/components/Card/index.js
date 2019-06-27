@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 
 const Card = props => {
-  const { image, name, types, number, evolves } = props;
+  const { frontImage, name, types, number } = props;
 
   return (
     <div className="card__container">
       <div className="card__image-wrapper">
-        <img className="card__image" src={image} alt={name} />
+        <img
+          className="card__image"
+          src={frontImage.front_default}
+          alt={name}
+        />
         <p className="card__number">ID/{number}</p>
       </div>
       <div className="card__info-wrapper">
@@ -20,24 +24,23 @@ const Card = props => {
             </li>
           ))}
         </ul>
-        {evolves ? (
+        {/* {evolves ? (
           <p className="card__evolution">
             Evolves from:<p className="card__evolution-evolves">{evolves}</p>
           </p>
         ) : (
           <p className="card__evolution">Pre-evolution</p>
-        )}
+        )} */}
       </div>
     </div>
   );
 };
 
 Card.propTypes = {
-  image: PropTypes.string.isRequired,
+  frontImage: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   types: PropTypes.arrayOf(PropTypes.object).isRequired,
   number: PropTypes.number.isRequired,
-  evolves: PropTypes.string.isRequired,
 };
 
 export default Card;

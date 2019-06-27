@@ -5,7 +5,15 @@ import List from '../List';
 import './styles.scss';
 
 const Homepage = props => {
-  const { list, isLoading, queryName, filterByName } = props;
+  const {
+    id,
+    name,
+    frontImage,
+    types,
+    isLoading,
+    queryName,
+    filterByName,
+  } = props;
 
   return (
     <div className="page__container">
@@ -14,7 +22,14 @@ const Homepage = props => {
       ) : (
         <main className="main__container">
           <Filters filterByName={filterByName} />
-          <List list={list} filterByName={filterByName} queryName={queryName} />
+          <List
+            id={id}
+            name={name}
+            frontImage={frontImage}
+            types={types}
+            filterByName={filterByName}
+            queryName={queryName}
+          />
         </main>
       )}
     </div>
@@ -22,7 +37,10 @@ const Homepage = props => {
 };
 
 Homepage.propTypes = {
-  list: PropTypes.arrayOf(PropTypes.object).isRequired,
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  frontImage: PropTypes.string.isRequired,
+  types: PropTypes.arrayOf(PropTypes.string).isRequired,
   isLoading: PropTypes.bool.isRequired,
   queryName: PropTypes.string.isRequired,
   filterByName: PropTypes.func.isRequired,
